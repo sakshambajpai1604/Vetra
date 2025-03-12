@@ -1,5 +1,4 @@
-const { text } = require('express');
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({
     image: String,
@@ -11,7 +10,7 @@ const productSchema = mongoose.Schema({
     },
     bgcolor: String,
     panelcolor: String,
-    textcolor: String
+    textcolor: String,
 });
 
 mongoose.exports = mongoose.model("product", productSchema);
