@@ -3,6 +3,7 @@ const router = express.Router();
 const userModel = require("../models/user-model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { generateToken } = require("../utils/generateToken");
 
 router.get("/", function (req, res) {
     res.send("hey it's working");
@@ -22,8 +23,9 @@ router.post("/register", async function (req, res) {
                         fullname
                     });
 
-                    let token = jwt.sign({ email, id: user._id }, "heyheyheye");
+                    let token = generateToken(user);
                     res.cookie("token", token);
+                    
                     res.send("user created successfuly");
                 }
             });
