@@ -32,3 +32,12 @@ module.exports.registerUser = async function (req, res) {
         res.send(err.message);
     }
 };
+
+module.exports.loginUser = async function (req, res) {
+    let { email, password } = req.body;
+
+    let user = await userModel.findOne({ email: email });
+    if (!user) return res.send("Email or Password incorrect");
+
+
+};
