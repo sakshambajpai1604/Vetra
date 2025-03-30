@@ -12,7 +12,7 @@ const productsRouter = require("./routes/productsRouter");
 const usersRouter = require("./routes/usersRouter");
 const indexRouter = require("./routes/index");
 
-const db = require("./config/mongose-connection");
+const db = require("./config/mongoose-connection");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
