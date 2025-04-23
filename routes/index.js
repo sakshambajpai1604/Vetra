@@ -19,6 +19,8 @@ router.get("/cart", isLoggedIn, async function (req, res) {
     let user = await userModel
       .findOne({ email: req.user.email })
       .populate("cart");
+
+      const bill = (Number(user.cart[0].price)+20 - Number(user.cart[0].discount))
   
   
     res.render("cart", { user, bill });
