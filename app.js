@@ -4,6 +4,7 @@ const cookieparser = require("cookie-parser");
 const path = require("path");
 const expressSession = require("express-session");
 const flash = require("connect-flash");
+const isloggedin = require("./middlewares/isLoggedIn");
 
 require("dotenv").config();
 

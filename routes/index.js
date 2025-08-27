@@ -15,15 +15,18 @@ router.get("/shop", isloggedin, async function (req, res) {
     res.render("shop", { products, success });
 });
 
-router.get("/cart", isLoggedIn, async function (req, res) {
+router.get("/cart", isloggedin, async function (req, res) {
     let user = await userModel
       .findOne({ email: req.user.email })
       .populate("cart");
 
-      const bill = (Number(user.cart[0].price)+20 - Number(user.cart[0].discount))
-  
-  
-    res.render("cart", { user, bill });
+      if (user.cart && user.cart.length > 0) {
+        const bill = (Number(user.cart[0].price) + 20 - Number(user.cart[0].discount));
+        res.render("cart", { user, bill });
+      } else {
+        // Handle empty cart case
+        res.render("cart", { user, bill: 0 });
+      }
   });
 
 router.get("/addtocart/:productid", isloggedin, async function (req, res) {
